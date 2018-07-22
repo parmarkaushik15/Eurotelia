@@ -7,7 +7,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" ruterLinkActive = "active" [routerLink]="['/login']">VOS</a>
+          <a class="navbar-brand" ruterLinkActive = "active" [routerLink]="['/login']">Eurotelia</a>
       </div>
       <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -28,23 +28,48 @@
           <div class="container">
               <div class="row">
                   <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                      <form method="#" action="#">
+                        <form [formGroup]="myForm" (ngSubmit)="login(myForm)">
                           <div class="card" data-background="color" data-color="blue">
                               <div class="card-header">
                                   <h3 class="card-title">Login</h3>
                               </div>
                               <div class="card-content">
+                                  
                                   <div class="form-group">
                                       <label>Phone Number</label>
-                                      <ngx-intl-tel-input class="form-control input-no-border" [(value)]="phone_number"></ngx-intl-tel-input>
+                                      <div class="intl-tel-input allow-dropdown">
+                                        <div class="flag-container" dropdown>
+                                            <div class="selected-flag dropdown-toggle" dropdownToggle>
+                                                <div class="iti-flag" [ngClass]="selectedCountry.flagClass"></div>
+                                                <div class="iti-arrow"></div>
+                                            </div>
+                                            <ul class="country-list dropdown-menu" *dropdownMenu>
+                                                <li class="country" *ngFor="let country of allCountries" (click)="onCountrySelect(country, focusable)">
+                                                    <div class="flag-box">
+                                                        <div class="iti-flag" [ngClass]="country.flagClass"></div>
+                                                    </div>
+                                                    <span class="country-name">{{country.name}}</span>
+                                                    <span class="dial-code">+{{country.dialCode}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <input type="tel" id="phoneNumber"  name="phoneNumber" formControlName="phoneNumber" class="form-control input-no-border" autocomplete="off"
+                                        (keypress)="onInputKeyPress($event)"  [placeholder]="selectedCountry.placeHolder" #focusable>
+                                        <div *ngFor="let validation of validationMessages.phoneNumber">
+                                            <div class="error-message" *ngIf="hasValidationError(validation, 'phoneNumber')">{{validation.message}}</div>
+                                        </div>
+                                    </div>
                                   </div>
                                   <div class="form-group">
                                       <label>Password</label>
-                                      <input type="password" placeholder="Password" class="form-control input-no-border">
+                                      <input type="password" placeholder="Password" name="password" id="password" formControlName="password" class="form-control input-no-border">
+                                      <div *ngFor="let validation of validationMessages.password">
+                                        <div class="error-message" *ngIf="hasValidationError(validation, 'password')">{{validation.message}}</div>
+                                    </div>
                                   </div>
                               </div>
                               <div class="card-footer text-center">
-                                  <a [routerLink]="['/app/dashboard']" class="btn btn-fill btn-wd ">Let's go</a>
+                                  <button type="submit" class="btn btn-fill btn-wd ">Let's go</button>
                                   <div class="forgot">
                                       <a href="#pablo">Forgot your password?</a>
                                   </div>
