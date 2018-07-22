@@ -152,7 +152,26 @@ export class LoginComponent implements OnInit {
             if(this.validUser) {
                 localStorage.setItem('currentUser', res);
                 this.router.navigate(['/app/dashboard']);
+            }else{
+                this.showNotification('danger', 'Your Password is not valid', 'top','right', '');
             }
+        }else{
+            this.showNotification('danger', 'Your phone number is not valid', 'top','right', '');
         }
     }
+
+    showNotification(type: any, message: any, from: any, align: any, icon: any) {
+        $.notify({
+        	icon: icon,
+        	message: message
+        },{
+            type: type,
+            timer: 3000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+    }
+
 }
