@@ -17,7 +17,8 @@ import { HomeLayoutComponent } from './component/layout/home-layout/home-layout.
 import { SidebarComponent } from './component/layout/sidebar/sidebar.component';
 import { NavbarComponent } from './component/layout/navbar/navbar.component';
 import { FooterComponent } from './component/layout/footer/footer.component';
-
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,8 @@ import { FooterComponent } from './component/layout/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxIntlTelInputModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

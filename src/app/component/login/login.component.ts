@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   private toggleButton;
     private sidebarVisible: boolean;
     private nativeElement: Node;
-
+    phone_number:any = "+919376666903";
     constructor(private element : ElementRef) {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
