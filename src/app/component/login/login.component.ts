@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private nativeElement: Node;
     selectedCountry: Country = new Country();
     myForm: FormGroup;
-    private validationMessages: any;
+    validationMessages: any;
     allCountries = [];
     validUser: Boolean;
     constructor(private element : ElementRef, 
@@ -102,8 +102,18 @@ export class LoginComponent implements OnInit {
           country.placeHolder = this.getPhoneNumberPlaceHolder(country.iso2.toUpperCase());
           this.allCountries.push(country);
         });
-        this.selectedCountry = this.allCountries[97];
+        let obj = this;
+        $.get("https://ipinfo.io", function(response) {
+            obj.allCountries.forEach(element => {
+                if(element.iso2.toString().toUpperCase() == response.country.toString().toUpperCase()) {
+                    obj.selectedCountry = element;
+                }
+            });
+        }, "jsonp");
       }
+
+      
+
       protected getPhoneNumberPlaceHolder(countryCode: string): string {
         const phoneUtil = _.PhoneNumberUtil.getInstance();
         const pnf = _.PhoneNumberFormat;
@@ -131,9 +141,10 @@ export class LoginComponent implements OnInit {
 
     login(form: FormGroup) {
         if(form.valid){
+            let phoneNumber = this.selectedCountry.dialCode+form.controls['phoneNumber'].value
             let request = {
-                'e164s':[form.controls['phoneNumber'].value],
-                'accounts':[form.controls['phoneNumber'].value]
+                'e164s':[phoneNumber],
+                'accounts':[phoneNumber]
             }
             this.userService.getPhone(request).subscribe((res) => {
                 this.validateLogin(res);
