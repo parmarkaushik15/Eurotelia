@@ -1,0 +1,6 @@
+{
+  "/external": {
+    "target": "http://136.243.170.130:8080/",
+    "secure": false
+  }
+}

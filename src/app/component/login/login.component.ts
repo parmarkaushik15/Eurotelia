@@ -4,6 +4,10 @@ declare var $:any;
 import * as _ from 'google-libphonenumber';
 import { Country } from '../../model/country.model';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { UserService } from '../../service/user.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +15,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+    
   test : Date = new Date();
   
     private toggleButton;
@@ -20,7 +25,12 @@ export class LoginComponent implements OnInit {
     myForm: FormGroup;
     private validationMessages: any;
     allCountries = [];
-    constructor(private element : ElementRef, private formBuilder: FormBuilder) {
+    validUser: Boolean;
+    constructor(private element : ElementRef, 
+        private formBuilder: FormBuilder,
+        private userService: UserService,
+        private router: Router
+    ) {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
     }
@@ -121,7 +131,28 @@ export class LoginComponent implements OnInit {
 
     login(form: FormGroup) {
         if(form.valid){
-            console.log(form)
+            let request = {
+                'e164s':[form.controls['phoneNumber'].value],
+                'accounts':[form.controls['phoneNumber'].value]
+            }
+            this.userService.getPhone(request).subscribe((res) => {
+                this.validateLogin(res);
+            });  
+        }
+    }
+
+    validateLogin(res: any): any {
+        this.validUser = false;
+        if(res.retCode == 0 && res.infoPhones.length != 0){
+            res.infoPhones.forEach(element => {
+                if(element.password == this.myForm.controls['password'].value) {
+                    this.validUser = true;
+                }
+            });
+            if(this.validUser) {
+                localStorage.setItem('currentUser', res);
+                this.router.navigate(['/app/dashboard']);
+            }
         }
     }
 }

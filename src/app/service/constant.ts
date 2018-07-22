@@ -1,7 +1,7 @@
 
 
 export class Constant {
-    static APP_URL: string = "http://136.243.170.130:8080/";
+    static APP_URL: string = "/";
     public static getAppURL() {
         return this.APP_URL;
     }

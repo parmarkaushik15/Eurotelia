@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Renderer, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 var misc:any ={
   navbar_menu_visible: 0,
   active_collapse: true,
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
   @ViewChild("navbar-cmp") button;
 
-  constructor(private renderer : Renderer, private element : ElementRef) {
+  constructor(private renderer : Renderer, private router: Router, private element : ElementRef) {
       this.nativeElement = element.nativeElement;
       this.sidebarVisible = false;
   }
@@ -81,12 +82,15 @@ sidebarClose(){
   body.classList.remove('nav-open');
 }
 sidebarToggle(){
-  // var toggleButton = this.toggleButton;
-  // var body = document.getElementsByTagName('body')[0];
   if(this.sidebarVisible == false){
       this.sidebarOpen();
   } else {
       this.sidebarClose();
   }
 }
+    logoutUser() {
+        localStorage.removeItem('currentUser');
+        this.router.navigate(['login']);
+    }
+
 }
