@@ -40,7 +40,7 @@ export class UserProfileComponent implements OnInit {
       'accounts':['12012150177']
     }
     this.userService.getCustomer(request).subscribe((res) => {
-        console.log(res);
+        //console.log(res);
     }); 
   }
 
@@ -51,8 +51,8 @@ export class UserProfileComponent implements OnInit {
 
   save(form: FormGroup) {
     if(form.valid){
-      console.log(this.myForm.controls['firstname'].value);
-      console.log(this.myForm.controls['lastname'].value);
+      //console.log(this.myForm.controls['firstname'].value);
+      //console.log(this.myForm.controls['lastname'].value);
     }
   }
 
