@@ -17,10 +17,9 @@ export class UserProfileComponent implements OnInit {
   isEdit = true;
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-
       companyName: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       address: ['', [Validators.required]],
@@ -38,6 +37,7 @@ export class UserProfileComponent implements OnInit {
       ],
       'email': [
         { type: 'required', message: 'A Email is required.' },
+        { type: 'email', message: 'Please enter valid email.' }
       ],
       'firstname': [
         { type: 'required', message: 'A First name is required.' },
@@ -93,7 +93,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   clear(){
-    debugger;
     this.myForm.reset();
   }
 
