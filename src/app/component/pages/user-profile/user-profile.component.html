@@ -4,55 +4,91 @@
         <form [formGroup]="myForm" (ngSubmit)="save(myForm)">
             <div class="card-header">
                 <h4 class="card-title">
-                    Update Profile
+                    Edit Profile
                 </h4>
             </div>
             <div class="card-content">
                 <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Company</label>
+                        <input type="text" formControlName="companyName" placeholder="Company" class="form-control">
+                        <div *ngFor="let validation of validationMessages.companyName">
+                            <div class="error-message" *ngIf="hasValidationError(validation, 'companyName')">{{validation.message}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label>User Name</label>
+                      <input type="text" formControlName="name" placeholder="User Name" class="form-control">
+                      <div *ngFor="let validation of validationMessages.name">
+                        <div class="error-message" *ngIf="hasValidationError(validation, 'name')">{{validation.message}}</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Email</label>
+                      <input type="text" formControlName="email" placeholder="Email" class="form-control">
+                      <div *ngFor="let validation of validationMessages.email">
+                          <div class="error-message" *ngIf="hasValidationError(validation, 'email')">{{validation.message}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-md-6">
-                        <label>First name</label>
-                        <input type="text" formControlName="firstname" placeholder="First name" class="form-control">
+                        <label>First Name</label>
+                        <input type="text" formControlName="firstname" placeholder="First Name" class="form-control">
                         <div *ngFor="let validation of validationMessages.firstname">
                             <div class="error-message" *ngIf="hasValidationError(validation, 'firstname')">{{validation.message}}</div>
-                        </div>
+                          </div>
                     </div>
                     <div class="col-md-6">
-                        <label>Last name</label>
-                        <input type="text" formControlName="lastname" placeholder="Last name" class="form-control">
+                        <label>Last Name</label>
+                        <input type="text" formControlName="lastname" placeholder="Last Name" class="form-control">
                         <div *ngFor="let validation of validationMessages.lastname">
                             <div class="error-message" *ngIf="hasValidationError(validation, 'lastname')">{{validation.message}}</div>
+                          </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>Address</label>
+                        <input type="text" formControlName="address" placeholder="Address" class="form-control">
+                        <div *ngFor="let validation of validationMessages.address">
+                            <div class="error-message" *ngIf="hasValidationError(validation, 'address')">{{validation.message}}</div>
+                          </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>City</label>
+                        <input type="text" formControlName="city" placeholder="City" class="form-control">
+                        <div *ngFor="let validation of validationMessages.city">
+                            <div class="error-message" *ngIf="hasValidationError(validation, 'city')">{{validation.message}}</div>
+                          </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Country</label>
+                        <input type="text" formControlName="country" placeholder="Country" class="form-control">
+                        <div *ngFor="let validation of validationMessages.country">
+                            <div class="error-message" *ngIf="hasValidationError(validation, 'country')">{{validation.message}}</div>
+                          </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Postal Code</label>
+                        <input type="text" formControlName="postCode" placeholder="Postal Code" class="form-control">
+                        <div *ngFor="let validation of validationMessages.postCode">
+                            <div class="error-message" *ngIf="hasValidationError(validation, 'postCode')">{{validation.message}}</div>
+                          </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                      <label>About Me</label>
+                      <textarea class="form-control" formControlName="aboutme" placeholder="About Me" rows="5"></textarea>
+                      <div *ngFor="let validation of validationMessages.aboutme">
+                          <div class="error-message" *ngIf="hasValidationError(validation, 'aboutme')">{{validation.message}}</div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <input type="text" placeholder="Email" class="form-control">
-                    </div>
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <input type="text" placeholder="Email" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <input type="text" placeholder="Email" class="form-control">
-                    </div>
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <input type="text" placeholder="Email" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <input type="text" placeholder="Email" class="form-control">
-                    </div>
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <input type="text" placeholder="Email" class="form-control">
-                    </div>
+                   
                 </div>
             </div>
             <div class="card-footer">
@@ -61,6 +97,9 @@
                 </button>
                 <button type="submit" *ngIf="!isEdit" class="btn btn-fill btn-info">
                     Update
+                </button>
+                <button type="button" (click)="clear()" class="btn btn-fill btn-info" style="margin-left: 20px;">
+                    Clear
                 </button>
             </div>
         </form>
