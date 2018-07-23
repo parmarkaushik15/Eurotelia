@@ -17,31 +17,62 @@ export class UserProfileComponent implements OnInit {
   isEdit = true;
   ngOnInit() {
     this.myForm = this.formBuilder.group({
+
+      companyName: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]]
+      lastname: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      postCode: ['', [Validators.required]],
+      aboutme: ['', [Validators.required]]
     });
     this.validationMessages = {
-        'firstname': [
-            {type: 'required', message: 'A First name is required.'},
-        ],
-        'lastname': [
-            {type: 'required', message: 'A Last names is required.'},
-        ]
+      'companyName': [
+        { type: 'required', message: 'A Company name is required.' },
+      ],
+      'name': [
+        { type: 'required', message: 'A User name is required.' },
+      ],
+      'email': [
+        { type: 'required', message: 'A Email is required.' },
+      ],
+      'firstname': [
+        { type: 'required', message: 'A First name is required.' },
+      ],
+      'lastname': [
+        { type: 'required', message: 'A Last name is required.' },
+      ],
+      'address': [
+        { type: 'required', message: 'Address is required.' },
+      ],
+      'city': [
+        { type: 'required', message: 'A City is required.' },
+      ],
+      'country': [
+        { type: 'required', message: 'A country is required.' },
+      ],
+      'postCode': [
+        { type: 'required', message: 'A postal Code is required.' },
+      ],
+      'aboutme': [
+        { type: 'required', message: 'About Me is required.' },
+      ],
     };
     this.getCustomer();
-    this.myForm.controls['firstname'].setValue("Hello world");
-    this.myForm.controls['lastname'].setValue("Hello world");
     this.myForm.disable();
   }
 
   getCustomer() {
     let request = {
-      'e164s':['12012150177'],
-      'accounts':['12012150177']
+      'e164s': ['12012150177'],
+      'accounts': ['12012150177']
     }
     this.userService.getCustomer(request).subscribe((res) => {
-        //console.log(res);
-    }); 
+      //console.log(res);
+    });
   }
 
   editForm() {
@@ -50,7 +81,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   save(form: FormGroup) {
-    if(form.valid){
+    if (form.valid) {
       //console.log(this.myForm.controls['firstname'].value);
       //console.log(this.myForm.controls['lastname'].value);
     }
@@ -61,5 +92,9 @@ export class UserProfileComponent implements OnInit {
     return control.hasError(validation.type) && (control.dirty || control.touched);
   }
 
+  clear(){
+    debugger;
+    this.myForm.reset();
+  }
 
 }
