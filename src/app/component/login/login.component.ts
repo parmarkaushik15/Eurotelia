@@ -91,6 +91,7 @@ export class LoginComponent implements OnInit {
     }
 
     fetchCountryData(): void {
+        debugger;
         CountryCode.allCountries.forEach(c => {
           let country = new Country();
           country.name = c[0].toString();
