@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExtraService } from 'src/app/service/extra.service';
-import { forEach } from '@angular/router/src/utils/collection';
-import { Rates } from 'src/app/model/rates.model';
-
+declare var $:any;
 @Component({
   selector: 'app-call-rates',
   templateUrl: './call-rates.component.html',
@@ -10,77 +8,36 @@ import { Rates } from 'src/app/model/rates.model';
 })
 export class CallRatesComponent implements OnInit {
   
-  res=[];
-  public response = {
-    "retCode": 0,
-    "infoFeeRates": [
-      {
-        "feePrefix": "0001",
-        "areaCode": "91",
-        "type": 4,
-        "areaName": "INDIAOther",
-        "infoFeeRateSections": [
-          
-        ],
-        "fee": 3.9166666666666665E-5,
-        "period": 1,
-        "lockType": 0,
-        "ivrFee": 0.0,
-        "ivrPeriod": 6
-      },
-      {
-        "feePrefix": "",
-        "areaCode": "91",
-        "type": 4,
-        "areaName": "INDIAOther",
-        "infoFeeRateSections": [
-          
-        ],
-        "fee": 3.9166666666666665E-5,
-        "period": 1,
-        "lockType": 0,
-        "ivrFee": 0.0,
-        "ivrPeriod": 6
-      },
-      {
-        "feePrefix": "",
-        "areaCode": "91",
-        "type": 4,
-        "areaName": "INDIAOther",
-        "infoFeeRateSections": [
-          
-        ],
-        "fee": 3.9166666666666665E-5,
-        "period": 1,
-        "lockType": 0,
-        "ivrFee": 0.0,
-        "ivrPeriod": 6
-      }
-    ]
-  }
-
-
+  callrates=[];
+ 
   constructor(private extraService: ExtraService) { }
 
   ngOnInit() {
-    this.GetFeeRate();
-    console.log(this.response);
-    this.response.infoFeeRates.forEach(element => {
-      debugger;
-      let rates = new Rates();
-     rates.areaCode=element.areaCode;
-     rates.areaName=element.areaName;
-     rates.fee=element.fee;
-      this.res.push(rates);
-      
-  });
+    this.getFeeRate();
   }
-  GetFeeRate() {
-    let request = {
-      'feeRateGroup': ['jabbi']
-    }
+  getFeeRate() {
+    let request = {"feeRateGroup":"jabbi","areaCodes":["91"]}
     this.extraService.getFeeRate(request).subscribe((res) => {
       console.log(res);
+      if(res.retCode == 0){
+      this.callrates = res.infoFeeRates
+      }else{
+        this.showNotification('danger', 'Server Error Please contact administrator', 'top','right', '');
+      }
+      console.log(this.callrates);
+    });
+  }
+  showNotification(type: any, message: any, from: any, align: any, icon: any) {
+    $.notify({
+      icon: icon,
+      message: message
+    },{
+        type: type,
+        timer: 3000,
+        placement: {
+            from: from,
+            align: align
+        }
     });
   }
 }

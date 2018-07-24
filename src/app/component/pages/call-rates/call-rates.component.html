@@ -17,10 +17,10 @@
                     </thead>
                   <tbody>
                           
-                          <tr *ngFor="let camper of res">
-                              <td>{{camper.areaCode}}</td>
-                              <td>{{camper.areaName}}</td>
-                              <td>{{camper.fee}}</td>
+                          <tr *ngFor="let callrate of callrates">
+                              <td>{{callrate.areaCode}}</td>
+                              <td>{{callrate.areaName}}</td>
+                              <td>{{callrate.fee  | number:'0.5-5'}}</td>
                             </tr>
                           
                   </tbody>

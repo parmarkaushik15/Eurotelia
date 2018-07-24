@@ -156,13 +156,15 @@ export class LoginComponent implements OnInit {
     validateLogin(res: any): any {
         this.validUser = false;
         if(res.retCode == 0 && res.infoPhones.length != 0){
+            let user: any;
             res.infoPhones.forEach(element => {
                 if(element.password == this.myForm.controls['password'].value) {
                     this.validUser = true;
+                    user = element;
                 }
             });
             if(this.validUser) {
-                localStorage.setItem('currentUser', res);
+                localStorage.setItem('currentUser', JSON.stringify(user));
                 this.router.navigate(['/app/dashboard']);
             }else{
                 this.showNotification('danger', 'Your Password is not valid', 'top','right', '');

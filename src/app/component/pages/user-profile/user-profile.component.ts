@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
-
+declare var $:any;
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -66,12 +66,25 @@ export class UserProfileComponent implements OnInit {
   }
 
   getCustomer() {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(currentUser);
     let request = {
-      'e164s': ['12012150177'],
-      'accounts': ['12012150177']
+      'e164s': [currentUser.account],
+      'accounts': [currentUser.account]
     }
     this.userService.getCustomer(request).subscribe((res) => {
-      //console.log(res);
+      console.log(res.infoCustomers[0]);
+      if(res.retCode == 0){
+        let customerInfo = res.infoCustomers[0];
+        this.myForm.controls['companyName'].setValue(customerInfo.infoCustomerAdditional.companyName);
+        this.myForm.controls['name'].setValue(customerInfo.name);
+        this.myForm.controls['email'].setValue(customerInfo.infoCustomerAdditional.email);
+        this.myForm.controls['firstname'].setValue(customerInfo.infoCustomerAdditional.linkMan);
+        this.myForm.controls['address'].setValue(customerInfo.infoCustomerAdditional.address);
+        this.myForm.controls['postCode'].setValue(customerInfo.infoCustomerAdditional.postCode);
+      }else{
+        this.showNotification('danger', 'Server Error Please contact administrator', 'top','right', '');
+      }
     });
   }
 
@@ -82,8 +95,12 @@ export class UserProfileComponent implements OnInit {
 
   save(form: FormGroup) {
     if (form.valid) {
-      //console.log(this.myForm.controls['firstname'].value);
-      //console.log(this.myForm.controls['lastname'].value);
+      let request = {
+
+      }
+      this.userService.modifyCustomer(request).subscribe((res) => {
+       console.log(res);
+      });
     }
   }
 
@@ -96,4 +113,17 @@ export class UserProfileComponent implements OnInit {
     this.myForm.reset();
   }
 
+  showNotification(type: any, message: any, from: any, align: any, icon: any) {
+    $.notify({
+      icon: icon,
+      message: message
+    },{
+        type: type,
+        timer: 3000,
+        placement: {
+            from: from,
+            align: align
+        }
+    });
+}
 }
