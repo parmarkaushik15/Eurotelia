@@ -2,8 +2,12 @@ export class CustomerInfo {
       cardType:number;
       cardNumber:number;
       address:string;
+      city:string;
+      country:string;
+      aboutme:string;
       postCode:number;
       linkMan:string;
+      lastname:string;
       telephone:number;
       fax:number;
       email:string;
@@ -26,5 +30,10 @@ export class CustomerInfo {
         this.reportType = 0;
         this.companyName = '';
         this.bank = '';
+        this.lastname = '';
+        this.aboutme = '';
+        this.city = '';
+        this.country = '';
+
     }
 }

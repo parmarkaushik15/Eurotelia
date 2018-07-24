@@ -25,8 +25,8 @@ export class UserProfileComponent implements OnInit {
       firstname: ['', [Validators.required]],
       lastname: [null],
       address: ['', [Validators.required]],
-      city: [null],
-      country: [null],
+      city: ['', [Validators.required]],
+      country: ['', [Validators.required]],
       postCode: ['', [Validators.required]],
       aboutme: [null]
     });
@@ -84,6 +84,10 @@ export class UserProfileComponent implements OnInit {
         this.myForm.controls['firstname'].setValue(this.userInfo.infoCustomerAdditional.linkMan);
         this.myForm.controls['address'].setValue(this.userInfo.infoCustomerAdditional.address);
         this.myForm.controls['postCode'].setValue(this.userInfo.infoCustomerAdditional.postCode);
+        this.myForm.controls['lastname'].setValue(this.userInfo.infoCustomerAdditional.lastname);
+        this.myForm.controls['aboutme'].setValue(this.userInfo.infoCustomerAdditional.aboutme);
+        this.myForm.controls['city'].setValue(this.userInfo.infoCustomerAdditional.city);
+        this.myForm.controls['country'].setValue(this.userInfo.infoCustomerAdditional.country);
       }else{
         this.showNotification('danger', 'Server Error Please contact administrator', 'top','right', '');
       }
@@ -101,7 +105,10 @@ export class UserProfileComponent implements OnInit {
       this.userInfo.infoCustomerAdditional.email = this.myForm.controls['email'].value;
       this.userInfo.infoCustomerAdditional.linkMan = this.myForm.controls['firstname'].value;
       this.userInfo.infoCustomerAdditional.postCode = this.myForm.controls['postCode'].value;
-      this.userInfo.infoCustomerAdditional.companyName = this.myForm.controls['companyName'].value;
+      this.userInfo.infoCustomerAdditional.lastname = this.myForm.controls['lastname'].value;
+      this.userInfo.infoCustomerAdditional.city = this.myForm.controls['city'].value;
+      this.userInfo.infoCustomerAdditional.country = this.myForm.controls['country'].value;
+      this.userInfo.infoCustomerAdditional.aboutme = this.myForm.controls['aboutme'].value;
       this.userInfo.name = this.myForm.controls['name'].value;
       console.log(this.userInfo);
       this.userService.modifyCustomer(this.userInfo).subscribe((res) => {
