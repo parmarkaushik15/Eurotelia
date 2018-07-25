@@ -30,6 +30,11 @@ export class ExtraService {
       return res;
     }));
   }
+  public getPhone(request: any) {
+    return this.http.post<any>(this.appUrl+'external/server/GetPhone', request).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
   public getReportCustomerFee(request: any) {
     return this.http.post<any>(this.appUrl+'external/server/GetReportCustomerFee', request).pipe(map((res: any) => {
