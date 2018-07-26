@@ -109,6 +109,7 @@ export class UserProfileComponent implements OnInit {
       this.userInfo.infoCustomerAdditional.city = this.myForm.controls['city'].value;
       this.userInfo.infoCustomerAdditional.country = this.myForm.controls['country'].value;
       this.userInfo.infoCustomerAdditional.aboutme = this.myForm.controls['aboutme'].value;
+      this.userInfo.infoCustomerAdditional.companyName = this.myForm.controls['companyName'].value;
       this.userInfo.name = this.myForm.controls['name'].value;
       console.log(this.userInfo);
       this.userService.modifyCustomer(this.userInfo).subscribe((res) => {
