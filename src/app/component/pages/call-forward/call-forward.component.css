@@ -1,0 +1,19 @@
+.borderless td, .borderless th{
+    border: none;
+}
+
+.checkbox label::after {
+    top: 8px;
+}
+.checkbox label::before {
+    top: 10px;
+}
+.checkbox input[type="checkbox"], .radio input[type="radio"] {
+    top: 7px;
+}
+.checkbox label {
+    padding-top: 11px;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 4px 11px;
+}

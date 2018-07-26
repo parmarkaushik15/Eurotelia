@@ -1,3 +1,289 @@
-<p>
-  call-forward works!
-</p>
+<div class="container-fluid p-t-15">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <form [formGroup]="myForm">
+        <div class="card-header">
+          <h4>Call Forwording Settings</h4>
+        </div>
+        <div class="card-content table-responsive table-full-width">
+          <table class="table table-hover ">
+            <tbody>
+              <tr>
+                <td>periodForwarding</td>
+                <td colspan="5">
+                  <div class="checkbox">
+                    <input formControlName="Active" id="active" type="checkbox" checked>
+                    <label for="active">
+                      Active
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%">weekOfDay</td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="All"  id="all" type="checkbox">
+                    <label for="all">
+                      ALL
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDayAll" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDayAll" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberAll" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveAll();" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Monday" id="monday" type="checkbox">
+                    <label for="monday">
+                      Monday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDayMonday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDayMonday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberMonday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveMonday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Tuesday" id="tuesday" type="checkbox">
+                    <label for="tuesday">
+                      Tuesday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDayTuesday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDayTuesday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberTuesday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveTuesday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Wednesday" id="Wednesday" type="checkbox">
+                    <label for="Wednesday">
+                      Wednesday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDayWednesday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDayWednesday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberWednesday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveWednesday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Thursday" id="thursday" type="checkbox">
+                    <label for="Thursday">
+                      Thursday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDayThursday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDayThursday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberThursday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveThursday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Friday" id="friday" type="checkbox">
+                    <label for="friday">
+                      Friday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDayFriday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDayFriday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberFriday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveFriday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Saturday" id="saturday" type="checkbox">
+                    <label for="saturday">
+                      Saturday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDaySaturday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDaySaturday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberSaturday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveSaturday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td width="20%"></td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Sunday" id="sunday" type="checkbox">
+                    <label for="sunday">
+                      Sunday
+                    </label>
+                  </div>
+                </td>
+                <td width="15%">
+                  <input formControlName="beginSecondInDaySunday" class="form-control timepicker" placeholder="00:00" type="text" style="">
+                </td>
+                <td width="15%">
+                  <input formControlName="endSecondInDaySunday" class="form-control timepicker" placeholder="24:00" type="text" style="">
+                </td>
+                <td width="15%">Forward Number</td>
+                <td width="15%">
+                  <input formControlName="forwordNumberSunday" class="form-control" placeholder="Forward number" type="text">
+                </td>
+                <td width="10%">
+                  <button (click)="saveSunday()" class="btn btn-info btn-fill btn-wd btn-next pull-right" type="button">Save</button>
+                </td>
+              </tr>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+
+              <tr>
+                <td width="20%">unconditionalForward</td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Active1" id="active1" type="checkbox">
+                    <label for="active1">
+                      Active
+                    </label>
+                  </div>
+                </td>
+                <td colspan="2" width="15%">
+                  <input formControlName="active1" class="form-control" placeholder="" type="text">
+                </td>
+              </tr>
+              <tr>
+                <td width="20%">noAnswerForward</td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Active2" id="active2" type="checkbox">
+                    <label for="active2">
+                      Active
+                    </label>
+                  </div>
+                </td>
+                <td colspan="2" width="15%">
+                  <input formControlName="active2" class="form-control" placeholder="" type="text">
+                </td>
+              </tr>
+              <tr>
+                <td width="20%">offlineForward</td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Active3" id="active3" type="checkbox">
+                    <label for="active3">
+                      Active
+                    </label>
+                  </div>
+                </td>
+                <td colspan="2" width="15%">
+                  <input formControlName="active3" class="form-control" placeholder="" type="text">
+                </td>
+              </tr>
+              <tr>
+                <td width="20%">busyForward</td>
+                <td width="10%">
+                  <div class="checkbox">
+                    <input formControlName="Active4" id="active4" type="checkbox">
+                    <label for="active4">
+                      Active
+                    </label>
+                  </div>
+                </td>
+                <td colspan="2" width="15%">
+                  <input formControlName="active4" class="form-control" placeholder="" type="text">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
