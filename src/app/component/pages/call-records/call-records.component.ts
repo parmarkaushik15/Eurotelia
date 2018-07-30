@@ -87,7 +87,7 @@ var data1: any = {
   labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
   series: [
       [ 10, 15,9, 1, 7, 2, 8],
-      [7, 9, 15, 10, 2, 1, 20]
+      [7, 9, 15, 10, 2, 1, 3]
   ]
 };
 
@@ -96,7 +96,7 @@ var options1: any = {
     axisX: {
         showGrid: false
     },
-    height: "245px"
+    height: "300px"
 };
 
 var responsiveOptions: any[] = [
